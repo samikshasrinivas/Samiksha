@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samiksha S — Software Developer</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --teal:#0f766e;--teal-light:#ccfbf1;--teal-mid:#14b8a6;
+    --slate:#1e293b;--slate-mid:#475569;--slate-light:#94a3b8;
+    --bg:#f8fafc;--white:#ffffff;--border:#e2e8f0;
+    --font:'Segoe UI',system-ui,-apple-system,sans-serif;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font);background:var(--bg);color:var(--slate);line-height:1.7;}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;background:rgba(248,250,252,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:100;padding:0 2rem;}
+  .nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .nav-logo{font-size:1.1rem;font-weight:700;color:var(--teal);letter-spacing:-0.3px;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{text-decoration:none;color:var(--slate-mid);font-size:0.9rem;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--teal);}
+
+  /* SECTIONS */
+  section{padding:5rem 2rem;}
+  .container{max-width:960px;margin:0 auto;}
+
+  /* HERO */
+  #hero{padding-top:8rem;padding-bottom:5rem;background:var(--white);border-bottom:1px solid var(--border);}
+  .hero-tag{display:inline-block;background:var(--teal-light);color:var(--teal);font-size:0.8rem;font-weight:600;padding:4px 14px;border-radius:20px;letter-spacing:0.5px;margin-bottom:1.2rem;}
+  .hero-name{font-size:3rem;font-weight:700;color:var(--slate);line-height:1.15;letter-spacing:-1px;margin-bottom:0.5rem;}
+  .hero-name span{color:var(--teal);}
+  .hero-title{font-size:1.15rem;color:var(--slate-mid);margin-bottom:1.5rem;}
+  .hero-summary{font-size:1rem;color:var(--slate-mid);max-width:640px;line-height:1.8;margin-bottom:2rem;}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn-primary{background:var(--teal);color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background 0.2s;}
+  .btn-primary:hover{background:#0d6460;}
+  .btn-outline{border:1.5px solid var(--teal);color:var(--teal);padding:10px 24px;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .btn-outline:hover{background:var(--teal-light);}
+  .hero-contact{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:2rem;}
+  .hero-contact a{color:var(--slate-mid);font-size:0.85rem;text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+  .hero-contact a:hover{color:var(--teal);}
+  .contact-dot{width:6px;height:6px;background:var(--teal-mid);border-radius:50%;display:inline-block;}
+
+  /* SECTION HEADER */
+  .section-label{font-size:0.75rem;font-weight:700;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:0.6rem;}
+  .section-title{font-size:1.8rem;font-weight:700;color:var(--slate);letter-spacing:-0.5px;margin-bottom:0.5rem;}
+  .section-line{width:40px;height:3px;background:var(--teal);border-radius:2px;margin-bottom:2.5rem;}
+
+  /* SKILLS */
+  #skills{background:var(--white);}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;}
+  .skill-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;}
+  .skill-card-label{font-size:0.75rem;font-weight:700;color:var(--teal);letter-spacing:1px;text-transform:uppercase;margin-bottom:0.7rem;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{background:var(--white);border:1px solid var(--border);color:var(--slate-mid);font-size:0.78rem;padding:3px 10px;border-radius:20px;}
+  .tag.highlight{background:var(--teal-light);border-color:#99f6e4;color:var(--teal);font-weight:600;}
+
+  /* EXPERIENCE */
+  #experience{background:var(--bg);}
+  .exp-item{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.8rem 2rem;margin-bottom:1.5rem;position:relative;}
+  .exp-item::before{content:'';position:absolute;left:0;top:1.8rem;bottom:1.8rem;width:3px;background:var(--teal);border-radius:0 2px 2px 0;}
+  .exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.3rem;}
+  .exp-role{font-size:1.05rem;font-weight:700;color:var(--slate);}
+  .exp-date{font-size:0.82rem;color:var(--teal);background:var(--teal-light);padding:3px 12px;border-radius:20px;font-weight:600;white-space:nowrap;}
+  .exp-company{font-size:0.88rem;color:var(--slate-mid);margin-bottom:1.2rem;}
+  .exp-sub{font-size:0.8rem;font-weight:700;color:var(--teal);letter-spacing:1px;text-transform:uppercase;margin:1rem 0 0.5rem;}
+  .exp-bullets{list-style:none;padding:0;}
+  .exp-bullets li{font-size:0.9rem;color:var(--slate-mid);padding:4px 0 4px 1.2rem;position:relative;line-height:1.6;}
+  .exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--teal);font-size:0.75rem;top:6px;}
+
+  /* PROJECTS */
+  #projects{background:var(--white);}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;}
+  .proj-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.5rem;}
+  .proj-card:hover{border-color:var(--teal-mid);transition:border-color 0.2s;}
+  .proj-icon{width:38px;height:38px;background:var(--teal-light);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+  .proj-icon svg{width:20px;height:20px;stroke:var(--teal);fill:none;stroke-width:1.8;}
+  .proj-title{font-size:0.95rem;font-weight:700;color:var(--slate);margin-bottom:0.5rem;}
+  .proj-desc{font-size:0.85rem;color:var(--slate-mid);line-height:1.7;}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:1rem;}
+
+  /* CERTIFICATIONS */
+  #certifications{background:var(--bg);}
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;}
+  .cert-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;display:flex;align-items:center;gap:1rem;text-decoration:none;transition:border-color 0.2s,box-shadow 0.2s;}
+  .cert-card:hover{border-color:var(--teal-mid);box-shadow:0 2px 12px rgba(15,118,110,0.08);}
+  .cert-icon{width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .cert-icon svg{width:18px;height:18px;stroke:var(--teal);fill:none;stroke-width:2;}
+  .cert-name{font-size:0.88rem;font-weight:600;color:var(--slate);}
+  .cert-link{font-size:0.75rem;color:var(--teal);margin-top:2px;}
+
+  /* EDUCATION */
+  #education{background:var(--white);}
+  .edu-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.6rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .edu-degree{font-size:1rem;font-weight:700;color:var(--slate);}
+  .edu-school{font-size:0.88rem;color:var(--slate-mid);margin-top:0.2rem;}
+  .edu-cgpa{font-size:0.82rem;color:var(--teal);font-weight:600;margin-top:0.3rem;}
+  .edu-year{font-size:0.82rem;color:var(--teal);background:var(--teal-light);padding:4px 14px;border-radius:20px;font-weight:600;white-space:nowrap;}
+
+  /* ACHIEVEMENTS */
+  #achievements{background:var(--bg);}
+  .achieve-list{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;}
+  .achieve-list li{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;font-size:0.88rem;color:var(--slate-mid);line-height:1.6;position:relative;padding-left:2.8rem;}
+  .achieve-list li::before{content:'★';position:absolute;left:1.1rem;top:1.1rem;color:var(--teal);font-size:0.9rem;}
+
+  /* FOOTER */
+  footer{background:var(--slate);color:var(--slate-light);padding:2.5rem 2rem;text-align:center;}
+  footer p{font-size:0.85rem;}
+  footer a{color:var(--teal-mid);text-decoration:none;}
+
+  @media(max-width:600px){
+    .hero-name{font-size:2rem;}
+    .nav-links{display:none;}
+    .exp-item{padding:1.4rem;}
+    section{padding:3.5rem 1.2rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Samiksha S</span>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#education">Education</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1 class="hero-name">Samiksha <span>S</span></h1>
+    <p class="hero-title">Software Developer · C++ · Qt · OpenGL · AI/ML</p>
+    <p class="hero-summary">2.4 years of experience building high-performance desktop applications. Specialized in LiDAR point cloud processing, 3D rendering, CAD engine development, and AI/ML-based classification — full lifecycle from feature development to deployment.</p>
+    <div class="hero-actions">
+      <a href="mailto:samikshasrinivas03@gmail.com" class="btn-primary">Get in touch</a>
+      <a href="https://linkedin.com/in/samikshas-4529a8243" target="_blank" class="btn-outline">LinkedIn</a>
+      <a href="https://github.com/samikshasrinivas" target="_blank" class="btn-outline">GitHub</a>
+    </div>
+    <div class="hero-contact">
+      <a href="mailto:samikshasrinivas03@gmail.com"><span class="contact-dot"></span>samikshasrinivas03@gmail.com</a>
+      <a href="tel:+918951062616"><span class="contact-dot"></span>+91 8951062616</a>
+      <a href="https://github.com/samikshasrinivas" target="_blank"><span class="contact-dot"></span>github.com/samikshasrinivas</a>
+      <a href="#"><span class="contact-dot"></span>Bengaluru, India</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">What I work with</p>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="section-line"></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <p class="skill-card-label">Languages</p>
+        <div class="skill-tags">
+          <span class="tag highlight">C++</span>
+          <span class="tag highlight">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">Shell Scripting</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <p class="skill-card-label">Frameworks & Libraries</p>
+        <div class="skill-tags">
+          <span class="tag highlight">Qt</span>
+          <span class="tag highlight">OpenGL</span>
+          <span class="tag">GDAL</span>
+          <span class="tag">Flutter</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">PyTorch</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <p class="skill-card-label">AI / ML</p>
+        <div class="skill-tags">
+          <span class="tag highlight">Deep Learning</span>
+          <span class="tag highlight">Machine Learning</span>
+          <span class="tag">Point Cloud Classification</span>
+          <span class="tag">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <p class="skill-card-label">LiDAR & GIS Tools</p>
+        <div class="skill-tags">
+          <span class="tag highlight">LiDAR360</span>
+          <span class="tag">QGIS</span>
+          <span class="tag">MicroStation</span>
+          <span class="tag">Geolitix</span>
+          <span class="tag">Google Earth Engine</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <p class="skill-card-label">Tools & DevOps</p>
+        <div class="skill-tags">
+          <span class="tag">Qt Creator</span>
+          <span class="tag">Qt IFW</span>
+          <span class="tag">Visual Studio</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Git</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Blender</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <p class="skill-card-label">Core Skills</p>
+        <div class="skill-tags">
+          <span class="tag highlight">3D Rendering</span>
+          <span class="tag highlight">CAD Engine Dev</span>
+          <span class="tag">OOP</span>
+          <span class="tag">UI/UX Development</span>
+          <span class="tag">Performance Optimization</span>
+          <span class="tag">SDLC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Where I've worked</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">Software Developer</span>
+        <span class="exp-date">Feb 2024 – Present</span>
+      </div>
+      <p class="exp-company">Q-Gate Infotech Private Limited · Bengaluru</p>
+
+      <p class="exp-sub">SPIOGEN – LiDAR Point Cloud Processing App</p>
+      <ul class="exp-bullets">
+        <li>Led end-to-end development of SPIOGEN — a high-performance desktop app for LiDAR point cloud processing using C++, Qt, and OpenGL, handling real-time rendering of millions of 3D data points.</li>
+        <li>Developed a CAD spatial engine enabling precise spatial computations, geometry operations, and advanced 3D data interaction.</li>
+        <li>Designed and built core features: Vertical Section viewer, Cut Selection tool, Maintenance Tool, and the complete frontend UI/UX from scratch.</li>
+        <li>Managed full build and deployment pipeline — integrating modules into the codebase, packaging releases with Qt IFW, and maintaining repositories for upgrades.</li>
+        <li>Owned frontend end-to-end: UI components, backend C++ integration, and consistent UX across all modules.</li>
+      </ul>
+
+      <p class="exp-sub">AI/ML & Point Cloud Classification</p>
+      <ul class="exp-bullets">
+        <li>Built an automated point cloud classification system using Python with ML and Deep Learning techniques to classify LiDAR data with high accuracy.</li>
+        <li>Developed ML pipelines for feature extraction, model training, and inference on large-scale 3D spatial datasets.</li>
+        <li>Researched state-of-the-art DL architectures for 3D data to improve classification over traditional rule-based methods.</li>
+      </ul>
+
+      <p class="exp-sub">General Development</p>
+      <ul class="exp-bullets">
+        <li>Built image processing and 3D data manipulation tools improving analysis workflows.</li>
+        <li>Gained hands-on experience with QGIS, MicroStation, LiDAR360, Geolitix, and Google Earth Engine.</li>
+        <li>Conducted debugging, optimization, and feature enhancements across releases.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">Embedded System Designer Intern</span>
+        <span class="exp-date">Aug 2022 – Sept 2022</span>
+      </div>
+      <p class="exp-company">Technologics · Bengaluru</p>
+      <ul class="exp-bullets">
+        <li>Designed and prototyped IoT-based embedded systems for a Smart Parking Solution.</li>
+        <li>Programmed Arduino, ESP32, and Raspberry Pi for hardware integration and real-time sensor monitoring.</li>
+        <li>Tested prototypes for reliability and scalability; documented schematics and technical processes.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">What I've built</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+    <div class="projects-grid">
+      <div class="proj-card">
+        <div class="proj-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <p class="proj-title">Dish Antenna Positioning System</p>
+        <p class="proj-desc">Microcontroller-based system that automatically adjusts antenna positioning using an IR-enabled TV remote. Programmed in C (Keil Compiler) to interpret IR signals and control motor movements. Presented at a National Conference.</p>
+        <div class="proj-tags">
+          <span class="tag">C (Keil)</span><span class="tag">Microcontroller</span><span class="tag">IR Signals</span><span class="tag highlight">Published</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <p class="proj-title">Real-Time Human Safety Device</p>
+        <p class="proj-desc">Wearable safety device with real-time tracking, self-defense features, and cloud connectivity. Integrates GPS, GSM, and camera modules via Arduino and ESP32. Published two research papers in IARSJET.</p>
+        <div class="proj-tags">
+          <span class="tag">Arduino</span><span class="tag">ESP32</span><span class="tag">GPS/GSM</span><span class="tag highlight">2 Papers</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 17h7M17.5 14v7"/></svg>
+        </div>
+        <p class="proj-title">Smart Parking Solution (IoT)</p>
+        <p class="proj-desc">IoT-based embedded system for urban smart parking. Real-time monitoring using sensors to detect and update parking availability. Built during internship at Technologics.</p>
+        <div class="proj-tags">
+          <span class="tag">Raspberry Pi</span><span class="tag">ESP32</span><span class="tag">IoT</span><span class="tag">Sensors</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <p class="section-label">Credentials</p>
+    <h2 class="section-title">Certifications</h2>
+    <div class="section-line"></div>
+    <div class="cert-grid">
+      <a class="cert-card" href="https://drive.google.com/file/d/16HiX9kCjmI1vKBOpJn3HCKxGp9Bfa6EA/view?usp=sharing" target="_blank">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
+        <div><p class="cert-name">Embedded System</p><p class="cert-link">View Certificate ↗</p></div>
+      </a>
+      <a class="cert-card" href="https://drive.google.com/file/d/17ATXFBfEXduCNbBWKNC57LwaASq3Fc_o/view?usp=sharing" target="_blank">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-4.9-6H7a4 4 0 00-4 2z"/></svg></div>
+        <div><p class="cert-name">AWS Cloud Computing</p><p class="cert-link">View Certificate ↗</p></div>
+      </a>
+      <a class="cert-card" href="https://drive.google.com/file/d/1darO2QrpKwhC4sz7NaYtKvNwsWPzlL-w/view?usp=sharing" target="_blank">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div><p class="cert-name">Java Full Stack</p><p class="cert-link">View Certificate ↗</p></div>
+      </a>
+      <a class="cert-card" href="https://drive.google.com/file/d/12rC128aoxMrawU-KRuE19pP6Lu-8rg_c/view?usp=sharing" target="_blank">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div><p class="cert-name">Data Analytics – Google</p><p class="cert-link">View Certificate ↗</p></div>
+      </a>
+      <a class="cert-card" href="https://drive.google.com/file/d/1GVpIPtYjHYEyxae-R69pqx_Plj0zEy7p/view?usp=sharing" target="_blank">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><p class="cert-name">AI/ML Geodata Analysis</p><p class="cert-link">View Certificate ↗</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">Academic background</p>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+    <div class="edu-card">
+      <div>
+        <p class="edu-degree">Bachelor of Engineering – Electronics & Communication</p>
+        <p class="edu-school">K S Institute of Technology, Bengaluru</p>
+        <p class="edu-cgpa">CGPA: 8.02</p>
+      </div>
+      <span class="edu-year">2019 – 2023</span>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <p class="section-label">Recognition</p>
+    <h2 class="section-title">Achievements</h2>
+    <div class="section-line"></div>
+    <ul class="achieve-list">
+      <li>Presented the Dish Antenna Positioning System at a National Conference, demonstrating innovative engineering solutions.</li>
+      <li>Authored two research papers in IARSJET — including a literature survey and implementation of a real-time human safety device.</li>
+      <li>Participated in KSCST project funding program, recognizing project merit, innovation, and execution capability.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & built by Samiksha S &nbsp;·&nbsp; <a href="mailto:samikshasrinivas03@gmail.com">samikshasrinivas03@gmail.com</a> &nbsp;·&nbsp; <a href="https://github.com/samikshasrinivas" target="_blank">GitHub</a> &nbsp;·&nbsp; Bengaluru, India</p>
+</footer>
+
+</body>
+</html>
